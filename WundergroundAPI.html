@@ -27,7 +27,7 @@ console.log(position);
       Geo.lat = position.coords.latitude;
       Geo.lng = position.coords.longitude;
   console.log(Geo);
-  var key = 'YOUR_KEY';
+  var key = '74afadc63fd41648';
   var Weather = "http://api.wunderground.com/api/"+ key +"/forecast/geolookup/conditions/q/" + Geo.lat + "," + Geo.lng + ".json";
   console.log(Weather);
   var data=[];
