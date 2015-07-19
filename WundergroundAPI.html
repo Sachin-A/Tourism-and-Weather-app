@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Project</title>
+<script type="text/JavaScript">
+document.write("We're in A");
+var Geo={};
+if (navigator.geolocation) {
+navigator.geolocation.getCurrentPosition(success,error);
+document.write("We're in b");
+}
+else {
+alert("Geolocation is not supported");
+}
+function error() {
+alert("Did you fall off the face of earth? Gaaaddamit");
+}
+function success(position) {
+document.write("We're in c");
+      Geo.lat = position.coords.latitude;
+      Geo.lng = position.coords.longitude;
+var key = '74afadc63fd41648';
+var Weather = "http://api.wunderground.com/api/”+ key +”/forecast/geolookup/conditions/q/" + Geo.lat + "," + Geo.lng + ".json";
+var data=[];
+document.write("We're in CD");
+$.ajax({
+url : Weather,
+dataType : "jsonp",
+success : function(data) {
+var str = JSON.stringify(data, null, 2);
+document.write(str);
+document.write("We're in D");
+var location = data['location']['city'];
+var temp = data['current_observation']['temp_f'];
+var img = data['current_observation']['icon_url'];
+var desc = data['current_observation']['weather'];
+var wind = data['current_observation']['wind_string'];
+document.write("We're in E");
+$('#location').html(location);
+$('#temp').html(temp);
+$('#desc').html(desc);
+$('#wind').html(wind);
+$('#img').attr('src', img);
+document.write("We're in F");
+}
+});
+}
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="forecast">
+<h1>Weather at <span id="location"> </span></h1>
+<div id="imgdiv">
+<img id="img" src=""/>
+</div>
+<p>It is currently <span id="temp"> </span>ªF with <span id="desc"> </span></p>
+<p>Wind: <span id="wind"></span></p>
+</div>
+</body>
+</html>
