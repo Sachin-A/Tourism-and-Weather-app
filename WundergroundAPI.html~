@@ -28,7 +28,7 @@ console.log(position);
       Geo.lng = position.coords.longitude;
   console.log(Geo);
   var key = '8aa689e2839cdcb7';
-  var Weather = "http://api.wunderground.com/api/"+ key +"/forecast/geolookup/conditions/q/" + Geo.lat + "," + Geo.lng + ".json";
+  var Weather = "http://api.wunderground.com/api/”+ key +”/forecast/geolookup/conditions/q/" + Geo.lat + "," + Geo.lng + ".json";
   console.log(Weather);
   var data=[];
   //document.write("We're in CD");
